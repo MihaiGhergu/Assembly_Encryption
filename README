@@ -1,0 +1,32 @@
+//Ghergu MIhai Adrian 321CB
+
+Pentru task ul 1, pe langa functia xor_strings, mi am creat o functie cu ajutorul
+careia imi obtin adresa cheii. In aceasta parcurg ecx pana gasesc primul 0x00
+si atunci cand il gasesc incrementez registrul cu care parcurg stringul si ies din
+functie. Pentru functia 'xor_strings', avand deja gasite adresele stringului si a 
+chei, parcurg fiecare dintre acestea si fac xor byte cu byte din fiecare, iar la 
+final bag in ecx rezultatul.
+
+La task ul 2, parcurg stringul si fac xor intre 2 elemente consecutive din 
+sirul initial, la final trebuie sa nu uitam sa actualizam pozitia anterioara.
+
+La task ul 3, m am gandit sa iau cate 2 elemente consecutive din cheie si din string
+si sa le convertesc, iar apoi sa fac xor intre ele. Pentru a le convertii, initial
+trebuie sa verific daca fiecare caracter este cifra sau litera si sa fac operatiile
+astfel incat sa le fac numere, apoi cand revin in functie trebuie sa unesc cei
+doi registrii din string si cheie, cititi la fiecare pas, inmultindul pe primul
+cu 16 si apoi adunand ul pe al doilea la acesta, apoi fac xor si adaug in ecx pe poz corespunzatoare. La acest task apelez de asemnea si functia creata pt taskul 1.
+
+La taskul 4, am parcurs stringrul cu esi, si am verificat daca caracterul curent este =, atunci am trecut mai departe, apoi daca era cifra am scazut din codul ascii al acestuia am scazut (50-26), iar la litere am scazut caracterul 'A'. Avand toate elementele in base32, le am converit in binar pe 5 biti in registrul edi. Cand am ajuns la finalul stringului original si cu toate elementele convertite in binar pe 5 biti parcurg noul string cu cate 8 pozitii odata si in fac inapoi in decimal, acest rezultat in bag in ecx.
+
+La task ul 5, in functia 'bruteforce_singlebyte_xor', am parcurs fiecare caracter din string si am facut xor cu cheia, de care stim ca este pe 1 byte. La acest task
+mi am construit o functie 'create_key' in care imi parcurg fiecare element, apoi fac xor intre elemntul curent si 'f', apoi iau elementul ce urmeaza dupa ii fac xor cu anterior si compar cu 'o', daca l-am obtinut pe 'o' trec la urmatorul element, si apoi daca il obtin si pe 'r' fac acelasi lucru si pentru 'c','e', deci am obtinut cheia. In cazul in care in timpul rularii nu am obtinut literele din force in ordinea buna trebuie sa resetam contorul cu care parcurgem urmatoarele litere din
+din string incepand cu pozitia de la care am facut prima data xor cu 'f', eu trebuind sa gasesc cuvantul force decodificat.
+
+La taskul 6, parcurg atat cheia cat si stringul, dar cum cheia are lungime mai mica
+trebuie reluata de mai multe ori, deci fac verificarea ca atunci cand aceasta ajunge la final trebuie sa ma duc intr un label in care iau cheia de la capat;
+de asemnea fac mai multe verificari daca este caracter non alfabetic, atunci nu
+incrementez registrul cu ajutorul caruia parcurg cheia. Am tratat si cazul cand
+dupa ce scad in codul ascii al caracterului offsetul cheii, codul ascii va scadea sub 97(corespunzator lui a) atunci am calculat cu cat a scazut sub aceasta valoare
+si am scazut din codul lui z aceasta valoare pe care am incrementat o cu 1.
+
